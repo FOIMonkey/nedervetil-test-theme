@@ -33,7 +33,6 @@ The Docker quick start in nedervetil installs it and loads the matching sample d
   them, and `sample_data:load` gives a fresh demo core's sample topics.
   * `foi_statistics/scotland-crosswalk.csv`: Scottish authorities' names in the
     Commissioner's figures, and their `sic:` tags.
-  * `authority_groups/geography.json`: a small invented map for place groups.
 
 Links in the data go to example.org.
 
@@ -99,7 +98,7 @@ style mixins, keeping nested selectors and the public/admin boundary intact.
 Core builds the stylesheets with Dart Sass and serves them with Propshaft
 (core's `doc/THEME-ASSETS-UPGRADE.md`). `lib/alavetelitheme.rb` puts this
 theme's Sass ahead of core's, names the admin skin for the build, and puts its
-images, fonts and scripts ahead of core's. Compare core and both themes at
+images, fonts and scripts ahead of core's. Compare core and your theme at
 desktop and mobile widths after changes to module boundaries; loading a
 dependency can change CSS order and `@extend` no longer reaches unrelated
 downstream modules.
