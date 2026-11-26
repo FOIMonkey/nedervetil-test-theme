@@ -1,0 +1,128 @@
+<% @title = "Making requests" %>
+
+<%# The ids missing_body and eir are linked to from core. %>
+<%= page_band %>
+<%= render :partial => 'sidebar' %>
+<div id="left_column_flip" class="left_column_flip">
+  <dl>
+
+    <dt id="which_authority">Which authority should I ask? <a href="#which_authority" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Start from the <a href="<%= topics_path %>">topics</a>: each one says
+        which kind of authority holds what, and where it's already published.
+        Each authority's page also lists what it usually holds.</p>
+      <p>If you ask the wrong one, it should tell you who to ask instead.</p>
+    </dd>
+
+    <dt id="missing_body">An authority is missing <a href="#missing_body" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Use the <a href="<%= new_change_request_path %>">form for adding an
+        authority</a>. Give its name and, if you can find it, the email
+        address it uses for Freedom of Information requests.</p>
+    </dd>
+
+    <dt id="authorities">Which organisations can I ask? <a href="#authorities" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Public authorities covered by the Freedom of Information Act, the
+        Freedom of Information (Scotland) Act or the Environmental Information
+        Regulations, and some organisations that answer requests voluntarily.</p>
+    </dd>
+
+    <dt id="focused">How do I write a good request? <a href="#focused" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Ask for recorded information, not opinions. Be specific: name the
+        period, the place and the kind of record. A short, focused request is
+        answered faster and is less likely to be refused on cost.</p>
+      <p>Before you send, the site shows documents already published by that
+        authority that match what you've written, and common questions from
+        the topics.</p>
+    </dd>
+
+    <dt id="fees">Do I have to pay? <a href="#fees" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Requests are free. An authority can refuse a request that would cost
+        too much to answer, or ask for a fee in a few cases, and it must tell
+        you if it does.</p>
+    </dd>
+
+    <dt id="quickly_response">How quickly will they reply? <a href="#quickly_response" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Normally within <%= AlaveteliConfiguration.reply_late_after_days %>
+        working days. The request page shows the due date, and moves it if the
+        authority asks you to clarify or extends the time as the law allows.</p>
+    </dd>
+
+    <dt id="no_response">They haven't replied in time <a href="#no_response" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>The request page offers to send a reminder. If that doesn't work,
+        you can ask for an internal review, and then complain to the
+        regulator.</p>
+    </dd>
+
+    <dt id="not_satifised">I'm not happy with the reply <a href="#not_satifised" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Ask the authority for an internal review. If you're still unhappy,
+        you can complain to the regulator.
+        <a href="<%= help_unhappy_path %>">More about what to do</a>.</p>
+    </dd>
+
+    <dt id="reuse">Can I reuse what they send me? <a href="#reuse" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Information released under Freedom of Information law is yours to
+        read, but copyright stays with whoever owns it. Check the authority's
+        terms before republishing.</p>
+    </dd>
+
+    <dt id="ico_help">Who can help if something goes wrong? <a href="#ico_help" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>The regulator for the law your request was made under: the
+        Information Commissioner for the Freedom of Information Act and the
+        Environmental Information Regulations, and the Scottish Information
+        Commissioner for Scottish authorities.</p>
+    </dd>
+
+    <dt id="data_protection">Can I ask for information about myself? <a href="#data_protection" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Not here. Information about yourself is a subject access request
+        under data protection law: ask the authority directly, not on this
+        site.</p>
+    </dd>
+
+    <dt id="private_requests">Are my requests private? <a href="#private_requests" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Yes. Only you and the site's administrators can read them. Documents
+        are published only after checking. See the
+        <a href="<%= help_privacy_path %>">privacy page</a>.</p>
+    </dd>
+
+    <dt id="eir">What are the Environmental Information Regulations? <a href="#eir" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A separate law for information about the environment, such as air
+        quality, pollution, land use or waste. It covers some organisations
+        the Freedom of Information Act doesn't, and lets authorities extend
+        the time to reply for complex requests.</p>
+    </dd>
+
+    <dt id="multiple">Can I send the same request to several authorities? <a href="#multiple" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Yes, as a batch request, if an administrator has allowed it for your
+        account. Each authority gets its own copy, and replies are filed
+        separately.</p>
+    </dd>
+
+    <dt id="offsite">They replied by post or phone <a href="#offsite" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Scan a paper reply and add it to the request, or note what was said,
+        so the record is complete.</p>
+    </dd>
+
+    <dt id="moderation">Who checks what is published? <a href="#moderation" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>The site's administrators check every document and its details
+        before it's published, including any redactions.</p>
+    </dd>
+
+  </dl>
+
+  <div id="hash_link_padding"></div>
+</div>

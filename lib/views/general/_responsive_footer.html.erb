@@ -1,0 +1,14 @@
+<%# Core's general/_responsive_footer, cut to the site name in a <p>, the credits and the About, Contact and Privacy links. %>
+<div class="footer" id="footer" role="contentinfo">
+  <div class="footer__inner">
+    <p class="footer__site-name"><%= site_name %></p>
+    <div class="footer__credits">
+      <%= render :partial => 'general/responsive_credits' %>
+    </div>
+    <ul class="footer__links">
+      <li><%= link_to _('About'), help_about_path %></li>
+      <li><%= link_to _('Contact'), help_contact_path %></li>
+      <li><%= link_to _('Privacy'), help_privacy_path %></li>
+    </ul>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-nedervetil-demo-theme
+nedervetil-test-theme
 =====================
 
 A demonstration theme for [nedervetil](https://github.com/FOIMonkey/nedervetil-app), an
@@ -42,7 +42,7 @@ Links in the data go to example.org.
 List the theme in `config/general.yml`:
 
     THEME_URLS:
-      - 'https://github.com/FOIMonkey/nedervetil-demo-theme.git'
+      - 'https://github.com/FOIMonkey/nedervetil-test-theme.git'
 
 A theme listed earlier wins over one listed later, so a site can list its own theme
 first and keep this one's data, or leave this one out.
@@ -78,7 +78,7 @@ word): update it with the content, and run `spec/help_pack_spec.rb`.
 
 The theme's specs run in the app, with the theme loaded:
 
-    bundle exec rspec lib/themes/nedervetil-demo-theme/spec
+    bundle exec rspec lib/themes/nedervetil-test-theme/spec
 
 ## Licence
 

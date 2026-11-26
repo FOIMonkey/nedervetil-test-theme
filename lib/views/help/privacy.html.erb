@@ -1,0 +1,177 @@
+<% @title = "Privacy" %>
+
+<%# The ids email_address, full_address, postal_answer, public_request and
+    real_name are linked to from core's request forms and must stay
+    (bundle exec rake themes:check_help_sections). %>
+<%= page_band %>
+<%= render :partial => 'sidebar' %>
+
+<div id="left_column_flip" class="left_column_flip">
+
+  <p>This is a demonstration site with invented data. A real site replaces
+    this page with its own privacy notice, naming who runs it and the
+    services it uses.</p>
+
+  <h2 id="readers">If you are reading this site</h2>
+  <dl>
+    <dt id="tracking">Does this site track me? <a href="#tracking" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>No. There's no advertising or analytics tracking. The server keeps
+        ordinary logs, such as the address a page was requested from, for a
+        short time to keep the site working and secure.</p>
+    </dd>
+
+    <dt id="cookies">Does it use cookies? <a href="#cookies" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Only the ones the site needs: one to keep you signed in, and one that
+        protects forms from being sent by other sites.</p>
+    </dd>
+
+    <dt id="contact_messages">What happens to a message I send through the contact page? <a href="#contact_messages" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>It's emailed to the people who run the site, and kept only as long as
+        it takes to deal with it.</p>
+    </dd>
+  </dl>
+
+  <h2 id="named">If you are named in a request</h2>
+  <dl>
+    <dt id="names">Why does my name appear? <a href="#names" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Requests and their correspondence are private, so your name appears
+        publicly only if it's in a document that an administrator checked and
+        published.</p>
+    </dd>
+
+    <dt id="takedown">Can something about me be removed? <a href="#takedown" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Yes. Use the <a href="<%= help_contact_path %>">contact page</a> and
+        say which document. A published document can be withdrawn, and its
+        files erased.</p>
+    </dd>
+  </dl>
+
+  <h2 id="documents_section">Documents</h2>
+  <dl>
+    <dt id="documents">What is published as a document? <a href="#documents" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A file from an authority's reply, with a title, a date and a short
+        description. Before publishing, an administrator checks every page,
+        and anything that shouldn't be public is redacted.</p>
+    </dd>
+
+    <dt id="document_files">How long are document files kept? <a href="#document_files" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>The published file is kept while the document is published. The
+        original as received, and versions replaced by a redacted one, are
+        erased after a set period.</p>
+    </dd>
+  </dl>
+
+  <h2 id="services">Who handles information for this site</h2>
+  <dl>
+    <dt id="hosting">Where is the site hosted? <a href="#hosting" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A real site names its hosting provider here.</p>
+    </dd>
+
+    <dt id="email">Who handles email? <a href="#email" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Requests and replies pass through the site's own mail server. A real
+        site names any email provider it uses here.</p>
+    </dd>
+
+    <dt id="ai">Is anything read by AI? <a href="#ai" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>If the site turns it on, replies to requests can be read by an AI
+        service, which says whether a reply needs the requester or is
+        routine, and what it decided. The reading only helps sort replies:
+        it never sends anything to an authority, and the requester can
+        change what it says. In this demonstration the readings are stored
+        with the sample data and no service is used.</p>
+    </dd>
+
+    <dt id="transfers">Does information leave the UK? <a href="#transfers" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A real site says here whether any service it uses is outside the
+        UK, and what protects the information.</p>
+    </dd>
+
+    <dt id="basis">Why is this allowed? <a href="#basis" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A real site gives its lawful basis for using personal information
+        here.</p>
+    </dd>
+  </dl>
+
+  <% if @user %>
+  <h2 id="requester">If you are the requester</h2>
+  <dl>
+    <dt id="public_request">Is my request public? <a href="#public_request" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>No. Your account, requests and correspondence stay private. Only
+        documents an administrator has checked and published are public, and
+        publishing one doesn't publish your request.</p>
+    </dd>
+
+    <dt id="email_address">Who sees my email address? <a href="#email_address" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Nobody. Each request is sent from its own address at this site, and
+        the authority's replies come back to that address. Your own email
+        address is used only to tell you about your requests.</p>
+    </dd>
+
+    <dt id="real_name">Do I have to use my real name? <a href="#real_name" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Yes, for a request under the Freedom of Information Act. A request
+        has to give the name of the person making it, and an authority can
+        decline one made under a pseudonym.</p>
+    </dd>
+
+    <dt id="full_address">The authority has asked for my postal address <a href="#full_address" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A request needs "an address for correspondence", and an email
+        address is one. You can reply to the authority to say so.</p>
+    </dd>
+
+    <dt id="postal_answer">They can only reply on paper <a href="#postal_answer" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Give the authority a postal address privately, not in a message on
+        this site. When the reply arrives you can scan it and add it to the
+        request.</p>
+    </dd>
+
+    <dt id="requester_documents">Can documents from my request be published? <a href="#requester_documents" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Yes, once a document has been made from a reply and an administrator
+        has checked it. If it names you, it's published only if you agree or
+        redact your name. You can withdraw a published document at any time.</p>
+    </dd>
+
+    <dt id="ai_reading">Can I stop replies being read by AI? <a href="#ai_reading" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Yes. Turn off <a href="<%= profile_ai_reading_path %>">reading replies
+        with AI</a>, which is linked from your profile page. New replies are
+        then never sent to the AI service. Each one is shown as needing your
+        attention, and you say what it did with your request. Replies read
+        before you turn it off keep their status.</p>
+    </dd>
+  </dl>
+  <% end %>
+
+  <h2 id="rights">Your rights</h2>
+  <dl>
+    <dt id="your_rights">What can I ask for? <a href="#your_rights" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>You can ask for a copy of the information the site holds about you,
+        and ask for it to be corrected or deleted, for its use to be limited,
+        or object to its use. Ask through the
+        <a href="<%= help_contact_path %>">contact page</a>.</p>
+      <p>If you're unhappy with how information about you is handled, tell
+        the people who run the site first. You can also complain to the data
+        protection regulator.</p>
+    </dd>
+  </dl>
+
+  <div id="hash_link_padding"></div>
+</div>

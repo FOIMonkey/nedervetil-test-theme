@@ -1,7 +1,203 @@
-# Your theme's locale files will override the core locale files.  This
-# is a good place to put both translations specific to your theme, and
-# "translations" of the core English words (e.g. you might want to
-# call FOI "RTI" throughougout, like this:
+# Wording changes for this site.
 #
-# msgid "Make and browse Freedom of Information (FOI) requests"
-# msgstr "Make and browse Right to Know (RTI) requests"
+# Alaveteli looks here before its own locale files, so giving a core English
+# string a "translation" replaces it everywhere it is used, without copying
+# any template. The msgid must match core's string exactly.
+#
+# This file is written by tools/locale/build-po.py (kept outside this
+# repository), which handles the quoting. It can also be edited by hand.
+# After upgrading Alaveteli, check that every msgid still exists in core:
+# a reworded core string silently stops being replaced.
+#
+# Changes need an app restart to show.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+# The strapline. Core uses this string after the site name in <title> and in
+# the social sharing tags; the theme's header shows it next to the site name.
+# PLACEHOLDER wording until the owner chooses one.
+
+msgid "Make and browse Freedom of Information (FOI) requests"
+msgstr "Freedom of Information requests, and what came back"
+
+# Dates in British order: 3 March 2026. Core reads its date format from this
+# string and falls back to an American one when it is not translated.
+
+msgid "simple_date_format"
+msgstr "%-d %B %Y"
+
+# Status names. The site's vocabulary is: All information provided, Some
+# information provided, No information, Waiting response, Waiting
+# classification, Internal review, Under appeal. Core's states are unchanged
+# underneath; these are their display names. Lateness still shows.
+# "No information" is core's "Refused". Core's "Information not held" is
+# not used on this site (the app stores it as refused: either
+# way nothing was released), and is given the same name in case it is ever
+# met.
+
+# The status sentence at the top of a request page.
+
+# "No information" where core says "refused": the form the owner sets a
+# status with, the notice shown after setting it, and the table of search
+# terms. Refused and not held are one outcome here (lib/model_patches.rb).
+
+msgid "All the options below can use <strong>status</strong> or <strong>latest_status</strong> before the colon. For example, <strong>status:not_held</strong> will match requests which have <em>ever</em> been marked as not held; <strong>latest_status:not_held</strong> will match only requests that are <em>currently</em> marked as not held."
+msgstr "All the options below can use <strong>status</strong> or <strong>latest_status</strong> before the colon. For example, <strong>status:rejected</strong> will match requests which have <em>ever</em> been marked as no information; <strong>latest_status:rejected</strong> will match only requests that are <em>currently</em> marked as no information."
+
+msgid "The request was refused by the public authority"
+msgstr "No information was provided"
+
+msgid "The public authority does not have the information requested"
+msgstr "Not used on this site: see status:rejected"
+
+# Request page.
+
+msgid "Requests like this"
+msgstr "Related requests"
+
+msgid "Act on what you've learnt"
+msgstr "Share"
+
+msgid "Download a zip file of all correspondence"
+msgstr "Download everything (zip)"
+
+msgid "View event history details"
+msgstr "Full history"
+
+# The "full history" page of a request.
+
+msgid "This table shows the technical details of the internal events that happened to this request on {{site_name}}. This could be used to generate information about the speed with which authorities respond to requests, the number of requests which require a postal response and much more."
+msgstr "This table is the technical record of this request on {{site_name}}: when each message was sent or received, and when its status was set. The states are shown by their internal names."
+
+msgid "<strong>Be careful!</strong> To use this data in an honourable way, you will need a good internal knowledge of user behaviour on {{site_name}}. How, why and by whom requests are categorised is not straightforward, and there will be user error and ambiguity. You will also need to understand FOI law, and the way authorities use it. Plus you'll need to be an elite statistician.  Please <a href=\"{{contact_path}}\">contact us</a> with questions."
+msgstr "A status is set by the requester after reading each reply, so it is a judgement, not a measurement. <a href=\"{{contact_path}}\">Get in touch</a> with questions."
+
+# Error pages.
+
+msgid "Sorry, we couldn't find that page"
+msgstr "Page not found"
+
+# Request lists.
+
+msgid "Search requests"
+msgstr "All requests"
+
+msgid "Search requests (page {{count}})"
+msgstr "All requests (page {{count}})"
+
+msgid "all requests"
+msgstr "All"
+
+msgid "successful requests"
+msgstr "Information provided"
+
+msgid "unsuccessful requests"
+msgstr "No information"
+
+msgid "unresolved requests"
+msgstr "Waiting"
+
+msgid "About {{count}} FOI requests found"
+msgstr "About {{count}} requests"
+
+msgid "One FOI request found"
+msgstr "One request"
+
+msgid "This person's Freedom of Information request"
+msgid_plural "This person's Freedom of Information requests (approximately {{count}})"
+msgstr[0] "One request"
+msgstr[1] "About {{count}} requests"
+
+msgid "Your Freedom of Information request"
+msgid_plural "Your Freedom of Information requests (approximately {{count}})"
+msgstr[0] "Your request"
+msgstr[1] "Your requests (about {{count}})"
+
+msgid "Your {{count}} private Freedom of Information request"
+msgid_plural "Your {{count}} private Freedom of Information requests"
+msgstr[0] "{{count}} private request"
+msgstr[1] "{{count}} private requests"
+
+msgid "Joined {{site_name}} in {{year}}"
+msgstr "Making requests here since {{year}}"
+
+msgid "Only requests made using {{site_name}} are shown."
+msgstr "Only requests published on {{site_name}} are shown."
+
+# Home page. Core's wording invites the visitor to make a request. This site
+# has one requester, so the same slots describe the archive instead.
+# Homepage wording reviewed by the owner.
+
+msgid "Your right to know"
+msgstr "An archive of Freedom of Information requests"
+
+msgid "Every citizen has the right to access information held by public authorities."
+msgstr "Requests to public bodies asking for information, and their replies, published in full."
+
+msgid "By law, they have to respond."
+msgstr "Public bodies have to answer by law."
+
+msgid "How it works"
+msgstr "How this works"
+
+msgid "You have the <strong>right</strong> to request information from any publicly-funded body, and get answers. {{site_name}} helps you make a Freedom of Information request. It also publishes all requests online."
+msgstr "Everyone has the <strong>right</strong> to ask a public body for the information it holds. This is a record of requests that have been made, and the information that was released."
+
+msgid "Use this site to make your request for information – we'll show you how."
+msgstr "A request for information is sent to a public body by email."
+
+msgid "We'll drop you an email as soon as your request gets a response."
+msgstr "The authority replies. By law it normally has 20 working days."
+
+msgid "We publish it all online. Great! Now you have your answer, and everybody else can access it too."
+msgstr "Selected requests are published here in full."
+
+msgid "Learn more &rarr;"
+msgstr "About this site &rarr;"
+
+msgid "Who can I request information from?"
+msgstr "Authorities"
+
+msgid "{{site_name}} covers requests to {{number_of_authorities}} authority, including:"
+msgid_plural "{{site_name}} covers requests to {{number_of_authorities}} authorities, including:"
+msgstr[0] "{{number_of_authorities}} authority is listed:"
+msgstr[1] "{{number_of_authorities}} authorities are listed, including:"
+
+msgid "What information has been requested?"
+msgstr "Latest requests"
+
+msgid "What information has been released?"
+msgstr "Latest requests"
+
+msgid "{{site_name}} users have made {{number_of_requests}} request, including:"
+msgid_plural "{{site_name}} users have made {{number_of_requests}} requests, including:"
+msgstr[0] "{{number_of_requests}} request published so far:"
+msgstr[1] "{{number_of_requests}} requests published so far, including:"
+
+# Private by default. Core assumes everything is public the moment it is
+# sent; on this site a request and its replies are private until the owner
+# publishes them.
+
+# Notices on things that are not published. Core's default explanation
+# ("There are various reasons why we might have done this") reads as if a
+# moderator had hidden something. Here, unpublished is the normal state.
+
+# The daily summary email. Core's subject names Alaveteli Pro
+# (PRO_SITE_NAME); here every account gets the summary
+# (lib/model_patches.rb).
+
+msgid "Your daily request summary from {{pro_site_name}}"
+msgstr "Your daily request summary"
+
+# The help pages, which core shows from lib/help_site/.
+
+msgid "How can we help?"
+msgstr "Help with the demonstration"
+
+msgid "Words to look for"
+msgstr "Reply"

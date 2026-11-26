@@ -1,0 +1,18 @@
+<div id="right_column_flip" class="right_column_flip">
+<h2>About</h2>
+<ul class="no_bullets">
+  <li><%= link_to_unless_current "About this site", help_about_path %></li>
+  <li><%= link_to_unless_current "Privacy", help_privacy_path %></li>
+  <li><%= link_to_unless_current "For public authorities", help_officers_path %></li>
+  <li><%= link_to_unless_current "Contact", help_contact_path %></li>
+  <li><%= link_to_unless_current "About the software", help_alaveteli_path %></li>
+</ul>
+
+<% if @user %>
+  <h2>For the requester</h2>
+  <ul class="no_bullets">
+    <li><%= link_to_unless_current "Making requests", help_requesting_path %></li>
+    <li><%= link_to_unless_current "Unhappy with a response?", help_unhappy_path %></li>
+  </ul>
+<% end %>
+</div>

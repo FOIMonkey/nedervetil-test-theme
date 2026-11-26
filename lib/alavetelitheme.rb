@@ -39,7 +39,8 @@ Rails.application.config.to_prepare do
   end
 end
 
-# The theme's wording first, then Alaveteli's.
+# The theme's wording first, then Alaveteli's. The inbox's wording
+# (locale_alaveteli_pro) is for every account.
 paths = []
 paths << File.join(File.dirname(__FILE__), '..', 'locale-theme')
 paths << 'locale_alaveteli_pro'
@@ -48,3 +49,5 @@ repos = paths.map do |path|
   FastGettext::TranslationRepository.build('app', :path => path, :type => :po)
 end
 AlaveteliLocalization.set_default_text_domain('app', repos)
+
+require File.expand_path('../model_patches.rb', __FILE__)

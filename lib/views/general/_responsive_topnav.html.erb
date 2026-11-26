@@ -1,0 +1,23 @@
+<%# Core's general/_responsive_topnav, with the section links in a labelled <nav> and a plain <ul> (core's has role="navigation" and repeats id="navigation"). %>
+<div id="topnav" class="topnav <%= @in_pro_area ? 'topnav--pro' : '' %>">
+  <nav aria-label="Main navigation">
+    <ul id="navigation" class="navigation">
+      <%# Core decides who has the inbox (see general/_log_in_bar). %>
+      <% if request_journey_pro? %>
+        <%= render :partial => 'alaveteli_pro/general/nav_items' %>
+      <% else %>
+        <%= render :partial => 'general/nav_items' %>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+
+<% if content_for? :subnav %>
+  <div id="subnav" class="subnav">
+    <nav aria-label="<%= _('Section navigation') %>">
+      <ul class="navigation">
+        <%= yield :subnav %>
+      </ul>
+    </nav>
+  </div>
+<% end %>

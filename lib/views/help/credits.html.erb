@@ -1,0 +1,31 @@
+<% @title = "Credits" %>
+
+<%# The id "helpus" is linked to from core and must stay
+    (bundle exec rake themes:check_help_sections). %>
+<%= page_band %>
+<%= render :partial => 'sidebar' %>
+<div id="left_column_flip" class="left_column_flip">
+
+  <dl>
+    <dt id="development">Software <a href="#development" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p><%= site_name %> runs on
+        <a href="https://github.com/FOIMonkey/nedervetil-app">Nedervetil</a>,
+        which is based on <a href="https://alaveteli.org/">Alaveteli</a>,
+        the free software for Freedom of Information sites, made by
+        <a href="https://www.mysociety.org/">mySociety</a> and its many
+        <a href="https://github.com/mysociety/alaveteli/graphs/contributors">contributors</a>.
+        Without their work, none of this would be possible.</p>
+      <p>The typeface is Roboto, and is used under the SIL Open Font License.</p>
+    </dd>
+
+    <dt id="helpus">Can I help? <a href="#helpus" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>This site is one person's archive and has no volunteers. If you want
+        to support the software it is built on, see
+        <a href="https://alaveteli.org/">alaveteli.org</a>.</p>
+    </dd>
+  </dl>
+
+  <div id="hash_link_padding"></div>
+</div>

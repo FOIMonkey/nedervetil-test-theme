@@ -1,0 +1,41 @@
+<%# Core's general/_responsive_header, with the question mark and site name in a <p>, no menu button, the account menu only for a signed-in user, "Sign in" for a visitor and no hero. It draws no notice: core's layout shows one below the page band. %>
+<div class="only-show-for-print">
+  <p class="print-information">Printed from <%= request.original_url.force_encoding('utf-8') %> on <%= Time.zone.now.to_formatted_s(:long)  %></p>
+</div>
+<div id="banner" class="banner <%= @in_pro_area ? 'banner--pro' : '' %>" role="banner">
+  <div id="banner_inner" class="banner_inner">
+    <div id="banner_content" class="banner_content">
+      <div class="banner_site-title">
+        <p class="site-title">
+          <%= link_to frontpage_path, :id => 'logo', :class => 'site-title__logo' do %>
+            <%= image_tag 'question-mark.svg', alt: '', width: 48, height: 48, class: 'site-title__mark' %>
+            <span class="site-title__name"><%= site_name %></span>
+          <% end %>
+        </p>
+      </div>
+
+      <%= render :partial => 'general/locale_switcher' %>
+      <% if @user %>
+        <%= render partial: 'general/log_in_bar' %>
+      <% end %>
+      <div id="navigation_search" class="navigation_search">
+        <form id="navigation_search_form" class="navigation_search_form" method="get" action="<%= disclosure_documents_path %>" role="search" data-controller="header-search" data-action="submit->header-search#open">
+          <label class="visually-hidden" for="navigation_search_button">
+            <%= _("Search") %>
+          </label>
+          <%= text_field_tag 'q', params[:q], { :class => "navigation_search_button", :id => "navigation_search_button", :type => "search", :placeholder => _("Search"), :title => _("type your search term here"), :data => { :header_search_target => "field" } } %>
+          <button type="submit" data-header-search-target="button" data-action="mousedown->header-search#hold">
+            <span class="visually-hidden">
+              <%= _("Submit Search") %>
+            </span>
+          </button>
+        </form>
+      </div>
+      <% unless @user %>
+        <%= link_to 'Sign in', signin_path(r: request.fullpath), class: 'banner-signin', data: { turbo: false } %>
+      <% end %>
+    </div>
+
+    <%= render :partial => 'general/responsive_topnav' %>
+  </div>
+</div>

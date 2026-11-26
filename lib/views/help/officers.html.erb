@@ -1,0 +1,79 @@
+<% @title = "For public authorities" %>
+
+<%# The id "copyright" is linked to from core and must stay
+    (bundle exec rake themes:check_help_sections). %>
+<%= page_band %>
+<%= render :partial => 'sidebar' %>
+
+<div id="left_column_flip" class="left_column_flip">
+  <dl>
+
+    <dt id="top">I followed a link at the bottom of a request. What is this site? <a href="#top" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p><%= site_name %> is a site for making Freedom of Information
+        requests. The request you received was written here and sent to your
+        authority by email. Handle it like any other request from a member of
+        the public.</p>
+      <p>This copy of the site is a demonstration: its authorities and
+        requests are invented.</p>
+    </dd>
+
+    <dt id="reply">How do I reply? <a href="#reply" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Reply to the email in the usual way. Each request is sent from its
+        own address, and a reply to that address is filed with the request.
+        Please don't send the reply to a different address.</p>
+    </dd>
+
+    <dt id="email_only">Is an email address enough for a valid request? <a href="#email_only" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Yes. The Freedom of Information Act asks for the requester's name and
+        "an address for correspondence", and an email address is one.</p>
+    </dd>
+
+    <dt id="responses">Will our reply be published? <a href="#responses" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>The request and its correspondence stay private. A document from your
+        reply may be published separately, after an administrator has checked
+        it and its details.</p>
+    </dd>
+
+    <dt id="names">Are the names of our staff published? <a href="#names" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Only if they appear in a document that's published after checking.
+        The requester can also redact names before a document is published.
+        If something has been published that shouldn't have been, use the
+        <a href="<%= help_contact_path %>">contact page</a>.</p>
+    </dd>
+
+    <dt id="days">How is the deadline on a request page worked out? <a href="#days" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A request is shown as overdue
+        <%= AlaveteliConfiguration.reply_late_after_days %> working days after
+        it was sent, not counting weekends and public holidays, and as long
+        overdue after <%= AlaveteliConfiguration.reply_very_late_after_days %>.
+        If you ask the requester to clarify the request, the count starts
+        again from the clarification. If you extend the deadline, as the law
+        allows, the requester can record the new date.</p>
+    </dd>
+
+    <dt id="allowed_responses">Our reply to an old request was returned <a href="#allowed_responses" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A request that has had no activity for some months stops accepting
+        replies, to keep out spam. Use the
+        <a href="<%= help_contact_path %>">contact page</a> and the reply can
+        be added by hand.</p>
+    </dd>
+
+    <dt id="copyright"><a id="commercial"></a>What about copyright in the documents we send? <a href="#copyright" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Copyright in a reply stays with the authority or whoever else owns
+        it. If you believe that publishing a particular document infringes
+        copyright, use the <a href="<%= help_contact_path %>">contact page</a>
+        and say which one.</p>
+    </dd>
+
+  </dl>
+
+  <div id="hash_link_padding"></div>
+</div>

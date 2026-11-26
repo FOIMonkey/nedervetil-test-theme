@@ -1,0 +1,114 @@
+<% @title = "About" %>
+
+<%# The ids whybother_them, reporting and reporting_unavailable are linked to
+    from core. Legacy #reporting_unavailable links land at the contact advice. %>
+<%= page_band "About #{site_name}" %>
+<%= render :partial => 'sidebar' %>
+
+<div id="left_column_flip" class="left_column_flip">
+
+  <dl>
+    <dt id="purpose">What is this site? <a href="#purpose" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>This is a demonstration. The authorities, people, requests, replies
+        and documents on it are all invented, to show what the software does.
+        Nothing here was sent to a real public body.</p>
+      <p>On a real site, this page says who runs it and why.</p>
+    </dd>
+
+    <dt id="premise">How does it work? <a href="#premise" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>A request is written on this site and sent to the authority by
+        email. Each request has its own reply address, so the authority's
+        answers arrive here and are filed with the request.</p>
+      <p>Requests and their correspondence are private: only the requester
+        and the site's administrators can read them. A document from a reply
+        becomes public only when an administrator has checked it and its
+        details and published it.</p>
+    </dd>
+
+    <dt id="selection">Is every request published? <a href="#selection" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>No. Request threads stay private. Publishing a document makes that
+        document and its details public, and nothing else from the request.</p>
+    </dd>
+
+    <dt id="statuses">What do the statuses mean? <a href="#statuses" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Every request has a status, shown as a mark and a name.</p>
+      <ul class="status-key">
+        <li>
+          <i class="icon-standalone icon_successful"></i>
+          <strong><%= InfoRequest.get_status_description('successful') %></strong>
+          The authority supplied everything that was asked for.
+        </li>
+        <li>
+          <i class="icon-standalone icon_partially_successful"></i>
+          <strong><%= InfoRequest.get_status_description('partially_successful') %></strong>
+          The authority supplied part of what was asked for.
+        </li>
+        <li>
+          <i class="icon-standalone icon_rejected"></i>
+          <strong><%= InfoRequest.get_status_description('rejected') %></strong>
+          The authority released nothing, whether because it refused the
+          request or because it said it doesn't hold the information.
+        </li>
+        <li>
+          <i class="icon-standalone icon_waiting_response"></i>
+          <strong><%= InfoRequest.get_status_description('waiting_response') %></strong>
+          The request has been sent and hasn't been answered yet. It's marked
+          overdue after <%= AlaveteliConfiguration.reply_late_after_days %>
+          working days and long overdue after
+          <%= AlaveteliConfiguration.reply_very_late_after_days %>.
+        </li>
+        <li>
+          <i class="icon-standalone icon_waiting_classification"></i>
+          <strong><%= InfoRequest.get_status_description('waiting_classification') %></strong>
+          A reply has arrived and hasn't been read and given a status yet.
+        </li>
+        <li>
+          <i class="icon-standalone icon_internal_review"></i>
+          <strong><%= InfoRequest.get_status_description('internal_review') %></strong>
+          The requester has asked the authority to look again at its answer.
+        </li>
+        <li>
+          <i class="icon-standalone icon_under_appeal"></i>
+          <strong><%= InfoRequest.get_status_description('under_appeal') %></strong>
+          The requester has appealed to the regulator or a tribunal.
+        </li>
+      </ul>
+    </dd>
+
+    <dt id="whybother_them">Why does a public authority have to reply? <a href="#whybother_them" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Freedom of Information law gives anyone the right to ask a public
+        authority for recorded information that it holds. The authority must
+        answer, normally within <%= AlaveteliConfiguration.reply_late_after_days %>
+        working days, either by providing the information or by explaining
+        why the law lets it refuse.</p>
+    </dd>
+
+    <dt id="reuse">Can I quote or link to what is published here? <a href="#reuse" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>You can link to any published document. An authority's documents
+        remain its own work: releasing them under Freedom of Information law
+        doesn't by itself give permission to republish them.</p>
+    </dd>
+
+    <dt id="reporting"><span id="reporting_unavailable"></span>What if something here should not be published? <a href="#reporting" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p>Tell the people who run the site through the
+        <a href="<%= help_contact_path %>">contact page</a>. Say which
+        document, and what the problem is.</p>
+    </dd>
+
+    <dt id="who">What software does it use? <a href="#who" aria-label="Link to this section">#</a></dt>
+    <dd>
+      <p><a href="https://alaveteli.org">Alaveteli</a>, free software for
+        running Freedom of Information sites.
+        <a href="<%= help_alaveteli_path %>">More about the software</a>.</p>
+    </dd>
+  </dl>
+
+  <div id="hash_link_padding"></div>
+</div>
