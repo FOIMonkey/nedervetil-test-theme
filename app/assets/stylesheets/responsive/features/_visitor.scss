@@ -1,0 +1,32 @@
+// What visitors are not offered. The body classes come from
+// general/_before_head_end. Request and profile pages give visitors a 404,
+// so nothing here styles them.
+//
+// THIS IS COSMETIC, NOT A PRIVACY CONTROL. The links are hidden; the pages
+// behind them still work for anyone who types the address.
+
+// While sign-ups are closed a visitor cannot make a request, so nothing
+// invites one. Core's newer pages ask core that themselves
+// (ReadOnly.feature?(:signups)); these are on older pages that do not.
+.is-visitor.signups-closed {
+  .body_listing__request-button,
+  .make-request-quick-button,
+  a[href$="#missing_body"] {
+    display: none;
+  }
+}
+
+// Hidden from everyone.
+
+// "Donate to <site name>": kept hidden in case DONATION_URL is set to a
+// donation page that isn't this site's.
+.act_link:has(.act-link-icon--donation) {
+  display: none;
+}
+
+// "Make a request" beside a request: only someone signed in sees a request,
+// and they have "Make request" in the navigation.
+.new-request-cta,
+.hero__new-request {
+  display: none;
+}

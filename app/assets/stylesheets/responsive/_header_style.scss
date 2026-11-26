@@ -1,0 +1,226 @@
+.banner {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+}
+
+.site-title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+
+// Core calls this the logo and swaps the name for an image; here the name
+// stays as text.
+.site-title__logo,
+.site-title__logo:link,
+.site-title__logo:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-header-text);
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    background: none;
+    color: var(--color-header-text);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+  }
+}
+
+// A fixed square box, so nothing moves while the mark loads.
+.site-title__mark {
+  display: block;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+}
+
+// The language switcher sits on the dark band, so it takes the band's
+// colours rather than the page's link colour.
+.locale-list {
+  color: var(--color-header-text);
+}
+
+.available-languages a,
+.available-languages a:link,
+.available-languages a:visited {
+  color: var(--color-header-soft);
+
+  &:hover,
+  &:active {
+    background: none;
+    color: var(--color-header-text);
+  }
+}
+
+// Keyboard focus on the navy band: the link itself turns into a highlight,
+// navy on mint (11:1), inside the usual outline.
+.banner a:focus-visible,
+.banner .navigation a:focus-visible,
+.banner .navigation .request-nav-action:focus-visible,
+.banner .account-link:focus-visible,
+.banner .site-title__logo:focus-visible {
+  background: var(--color-highlight);
+  color: var(--color-on-highlight);
+  text-decoration: none;
+}
+
+.navigation_search_form {
+  input[type="search"] {
+    border-color: var(--white);
+    border-right-width: 0;
+  }
+
+  button {
+    border: var(--border) solid var(--color-highlight);
+    border-radius: var(--radius);
+    background: var(--color-highlight) center / 1rem no-repeat;
+    // magnifying glass, drawn in the ink colour
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230b1f3a' stroke-width='2'%3E%3Ccircle cx='6.5' cy='6.5' r='4.5'/%3E%3Cpath d='m10 10 4.5 4.5'/%3E%3C/svg%3E");
+    cursor: pointer;
+
+    // Core makes every button in a form see-through when it has focus, which
+    // would leave this one an empty box: its icon is drawn in navy.
+    &:focus {
+      background-color: var(--color-highlight);
+    }
+
+    &:hover {
+      background-color: var(--white);
+      border-color: var(--white);
+    }
+  }
+}
+
+#topnav {
+  border-bottom: var(--border-band) solid var(--color-highlight);
+}
+
+.navigation {
+  a,
+  a:link,
+  a:visited,
+  .request-nav-action {
+    color: var(--color-header-text);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:active,
+  .request-nav-action:hover {
+    background: none;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+  }
+
+  // The current section: underlined in the highlight, and bold so it is not
+  // colour alone. (A filled block is a common government focus style.)
+  .selected a,
+  .selected a:link,
+  .selected a:visited,
+  .selected .request-nav-action {
+    background: none;
+    box-shadow: inset 0 -4px 0 var(--color-highlight);
+    color: var(--color-header-text);
+    font-weight: var(--weight-bold);
+  }
+}
+
+#subnav {
+  background: var(--color-panel);
+  border-bottom: var(--border-hair) solid var(--color-line);
+
+  .navigation {
+    a,
+    a:link,
+    a:visited {
+      color: var(--color-text);
+      font-size: var(--text-md);
+    }
+
+    .selected a,
+    .selected a:link,
+    .selected a:visited {
+      background: none;
+      box-shadow: inset 0 -4px 0 var(--color-text);
+    }
+  }
+}
+
+.account-link,
+.account-link:link,
+.account-link:visited {
+  color: var(--color-header-text);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  text-decoration: underline;
+
+  &:hover,
+  &:active {
+    background: none;
+    color: var(--color-header-text);
+    text-decoration-thickness: 3px;
+  }
+}
+
+.logged-in-menu {
+  border: var(--border) solid var(--color-text);
+  background: var(--color-page);
+  color: var(--color-text);
+  font-size: var(--text-md);
+}
+
+.profile-summary {
+  border-bottom: var(--border-hair) solid var(--color-line);
+}
+
+.profile-summary__name {
+  font-weight: var(--weight-bold);
+}
+
+.profile-summary__email {
+  color: var(--color-text-soft);
+  font-size: var(--text-sm);
+}
+
+.logged-in-menu__signout-link {
+  border-top: var(--border-hair) solid var(--color-line);
+}
+
+.banner-signin,
+.banner-signin:link,
+.banner-signin:visited {
+  align-self: center;
+  margin-left: auto;
+  padding: 0.3rem 0.8rem;
+  border: var(--border) solid var(--color-header-text);
+  color: var(--color-header-text);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-highlight);
+    background: var(--color-highlight);
+    color: var(--color-on-highlight);
+  }
+}
+
+// Native form actions keep unsaved request fields when using the main menu.
+.navigation .request-nav-action {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}

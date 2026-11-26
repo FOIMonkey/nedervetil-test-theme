@@ -1,0 +1,178 @@
+@use "sass:color";
+@use "sass:string";
+// Navy and mint. Mint never carries meaning alone, and on the light page a
+// mint panel always has a navy edge (mint is 1.5:1 against white).
+
+// A background image cannot read the text colour, so each palette carries its
+// own copy of these field icons, drawn in its ink.
+@function hex-digits($colour) {
+  @return string.slice(color.ie-hex-str($colour), 4); // "#FF0E1113" -> "0E1113"
+}
+
+@function icon-caret($colour) {
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='%23#{hex-digits($colour)}' d='M0 0h10L5 5z'/%3E%3C/svg%3E");
+}
+
+@function icon-calendar($colour) {
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23#{hex-digits($colour)}' stroke-width='1.5'%3E%3Cpath d='M1.75 3.25h12.5v11H1.75zM1.75 6.75h12.5M5 1v3.5M11 1v3.5'/%3E%3C/svg%3E");
+}
+
+$ink: #0b1f3a;
+$paper: #ededea;
+
+@mixin palette-light {
+  color-scheme: light;
+  --color-page: var(--white);
+  --color-text: var(--ink);
+  --color-text-soft: var(--grey-700);
+  --color-link: var(--ink);
+  --color-rule: var(--ink);        // heavy rules: between messages, sections
+  --color-line: var(--grey-400);   // hairlines
+  --color-panel: var(--grey-100);
+  --color-desk: var(--grey-200);   // under a document's pages, a shade darker than a panel
+  --color-field: var(--white);
+  --icon-caret: #{icon-caret($ink)};
+  --icon-calendar: #{icon-calendar($ink)};
+}
+
+@mixin palette-dark {
+  color-scheme: dark;
+  --color-page: var(--night);
+  --color-text: var(--paper);
+  --color-text-soft: var(--grey-400);
+  --color-link: var(--paper);
+  --color-rule: var(--paper);
+  --color-line: var(--grey-700);
+  --color-panel: var(--grey-900);
+  --color-desk: var(--grey-900);
+  --color-field: var(--night);
+  --icon-caret: #{icon-caret($paper)};
+  --icon-calendar: #{icon-calendar($paper)};
+  --color-header-bg: var(--deep); // the bands stay darker than the page
+}
+
+// Anything set on the highlight is navy on mint, whatever the page colour:
+// the light jobs make the links, marks, rules and buttons inside it follow
+// without being told.
+@mixin highlighted {
+  @include palette-light;
+  background-color: var(--color-highlight);
+  color: var(--color-text);
+}
+
+
+// Emit once through tokens_css; importing palette helpers alone adds no CSS.
+@mixin styles {
+
+
+:root {
+  --ink: #{$ink};
+  --white: #ffffff;
+  --mint: #6ee7c8;
+  --grey-700: #45597c;
+  --grey-400: #b4b9bd;   // hairlines between list items (decorative); secondary text on the dark page
+  --grey-300: #c9cdd0;
+  --grey-200: #e7e7e3;
+  --grey-100: #f3f3f1;
+  --black: #000000;
+  --deep: #06142a;       // the bands on the dark page
+  --night: #0f2747;      // the dark page: ink, lifted a little so the bands still read as bands
+  --grey-900: #183459;
+  --paper: #{$paper};    // text on the dark page: white, taken down a little
+
+  @include palette-light;
+  --color-highlight: var(--mint);
+  --color-on-highlight: var(--ink);
+  // Navy on the light page, where mint alone is too faint. On the dark page
+  // a navy edge would be lost against the page and leave the panel looking
+  // 2px short of the rules around it, so there the edge is mint too.
+  --color-highlight-edge: var(--ink);
+  --color-control: var(--ink);      // the mark in a radio button or tick box (white in both looks)
+  --color-focus: var(--mint);
+  --color-header-bg: var(--ink);
+  --color-header-text: var(--white);
+  --color-header-soft: var(--grey-300);
+
+  // Every status is the text colour on the page colour and is told apart by
+  // its mark and its words, so all five tones are the same. They are separate
+  // tokens so that tints can be introduced without touching the stylesheets
+  // that use them.
+  --status-done-bg: var(--color-page);      --status-done-fg: var(--color-text);      // all / some information provided
+  --status-none-bg: var(--color-page);      --status-none-fg: var(--color-text);      // no information
+  --status-waiting-bg: var(--color-page);   --status-waiting-fg: var(--color-text);   // waiting response / classification
+  --status-review-bg: var(--color-page);    --status-review-fg: var(--color-text);    // internal review, under appeal
+  --status-late-bg: var(--color-page);      --status-late-fg: var(--color-text);      // overdue
+
+  --font-sans: "Roboto", "Roboto Fallback", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  // A fixed scale (no fluid sizing): labels and body text stay the same size
+  // at every width.
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 0.9375rem;
+  --text-base: 1rem;
+  --text-body: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.6875rem;
+  --text-3xl: 2.25rem;
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.55;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --measure: 41rem;       // longest comfortable line of reading text
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  --radius: 0;
+  --border-hair: 1px;
+  --border: 2px;
+  --border-rule: 3px;
+  --border-band: 4px;
+
+  --page-width: 70rem;    // same as $row-width in _settings.scss
+  --gutter: 0.9375rem;    // Foundation's column padding, so edges line up with core's grid
+  // Left and right padding that lines a full-width band (masthead, footer)
+  // up with the page column.
+  --page-inset: var(--gutter);
+}
+
+// A media query rather than max(): the Sass version core uses, and its CSS
+// compressor, try to evaluate max() themselves and fail on var().
+@media (min-width: 70em) {
+  :root {
+    --page-inset: calc((100% - var(--page-width)) / 2 + var(--gutter));
+  }
+}
+
+// Screen only: a printed page is always black on white. There is no switch on
+// the site; it follows the device, which needs no script and no cookie.
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    @include palette-dark;
+    --color-highlight-edge: var(--mint);
+  }
+}
+
+// Below the one-column cutoff, headings step down.
+@media (max-width: 57.99em) {
+  :root {
+    --text-body: 1rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.375rem;
+    --text-3xl: 1.6875rem;
+  }
+}
+}

@@ -1,1 +1,14 @@
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<%# Core's <body> has no class for whether anyone is signed in, or for whether
+    sign-ups are closed (core's READ_ONLY_FEATURES), so CSS alone could not hide
+    things from visitors. Hiding is cosmetic only: the routes behind the hidden
+    links still work.
+
+    With color-scheme the browser paints a dark window from the first moment,
+    rather than a white one until the stylesheet arrives. %>
+<% content_for :body_class, (@user ? ' is-signed-in ' : ' is-visitor ') %>
+<% content_for :body_class, ' signups-closed ' if ReadOnly.respond_to?(:feature?) && ReadOnly.feature?(:signups) %>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#0b1f3a">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#06142a">
+<link rel="preload" href="<%= asset_path('roboto-latin-wght-normal.woff2') %>" as="font" type="font/woff2" crossorigin>
+<%= stylesheet_link_tag 'admin-skin', rel: 'stylesheet' if is_admin? %>

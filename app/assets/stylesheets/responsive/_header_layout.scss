@@ -1,0 +1,229 @@
+@use "responsive/foundation" as *;
+@use "responsive/utils" as *;
+
+.banner_content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  row-gap: var(--space-3);
+  padding: var(--space-4) var(--page-inset) 0;
+
+  > * {
+    grid-column: 1 / -1;
+  }
+
+  > .banner_site-title {
+    grid-column: 1;
+  }
+
+  > .banner-signin {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  @include respond-min($main_menu-mobile_menu_cutoff) {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    column-gap: var(--space-5);
+    align-items: center;
+    padding-top: 1.1rem;
+  }
+}
+
+// Core always renders the language switcher's wrapper, even with one
+// language, when it is empty. Left in the grid it would take a cell.
+.locale-list:not(:has(*)) {
+  display: none;
+}
+
+// With more than one language, the switcher is a line of its own under the
+// site name: the current language, then the others as links.
+.locale-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.locale-list-trigger {
+  margin: 0;
+}
+
+.available-languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.available-languages__item {
+  margin: 0;
+}
+
+// On a phone core's band is a wrapping row, not this grid; the switcher
+// takes the last line of its own, so the site name keeps its room.
+@media (max-width: 35em) {
+  #banner .locale-list {
+    flex: 1 1 100%;
+    order: 4;
+  }
+}
+
+.banner_site-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem var(--space-4);
+}
+
+.site-title {
+  margin: 0;
+  max-width: none;
+}
+
+// On wide screens each part has its own column, so the search stays on the
+// right-hand edge whether or not the account link is there.
+@include respond-min($main_menu-mobile_menu_cutoff) {
+  .banner_content > .banner_site-title { grid-column: 1; grid-row: 1; }
+  .banner_content > .logged_in_bar { grid-column: 2; grid-row: 1; }
+  .banner_content > .navigation_search { grid-column: 3; grid-row: 1; }
+  .banner_content:has(> .banner-signin) > .navigation_search { grid-column: 2; }
+  .banner_content > .banner-signin { grid-column: 3; }
+}
+
+.navigation_search_form {
+  display: flex;
+  margin: 0;
+
+  input[type="search"] {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    margin: 0;
+
+    @include respond-min($main_menu-mobile_menu_cutoff) {
+      flex: none;
+      width: 14rem;
+    }
+  }
+
+  button {
+    flex: none;
+    width: 2.75rem;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+#topnav {
+  padding: var(--space-2) var(--page-inset) 0;
+
+  @include respond-min($main_menu-mobile_menu_cutoff) {
+    padding-top: var(--space-3);
+  }
+}
+
+#subnav {
+  padding: 0 var(--page-inset);
+}
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-1);
+  margin: 0 0 0 -0.7rem; // so the first link's text lines up with the page edge
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+    max-width: none;
+  }
+
+  // Narrower on a phone, so a visitor's four links fit on one line at 375px.
+  a, .request-nav-action {
+    display: block;
+    padding: 0.55rem 0.7rem;
+  }
+
+  @include respond-min($main_menu-mobile_menu_cutoff) {
+    margin-left: -0.9rem;
+
+    a, .request-nav-action {
+      padding: 0.55rem 0.9rem;
+    }
+  }
+}
+
+.logged_in_bar {
+  position: relative;
+}
+
+.account-link {
+  display: inline-block;
+  max-width: 15em;
+  padding: var(--space-2) 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  .js-loaded &::after {
+    content: "";
+    display: inline-block;
+    margin-left: 0.45em;
+    border-left: 0.3em solid transparent;
+    border-right: 0.3em solid transparent;
+    border-top: 0.35em solid currentColor;
+    vertical-align: 0.12em;
+  }
+}
+
+.logged-in-menu {
+  margin-top: var(--space-2);
+  padding: var(--space-4);
+
+  @include respond-min($main_menu-mobile_menu_cutoff) {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 20;
+    width: 17rem;
+  }
+
+  // Closed until the account link is clicked. Without JavaScript it stays open.
+  .js-loaded & {
+    display: none;
+  }
+}
+
+.profile-summary {
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+}
+
+.profile-summary__email {
+  overflow-wrap: anywhere;
+}
+
+.logged-in-menu__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: inline-block;
+    padding: var(--space-1) 0;
+  }
+}
+
+.logged-in-menu__signout-link {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+}

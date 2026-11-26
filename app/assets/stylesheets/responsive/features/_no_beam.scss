@@ -1,0 +1,25 @@
+@use "responsive/features/tokens" as *;
+
+// The demo without core's beams and the picture they start from. On the front
+// page the search box keeps its highlighted panel and a topic lights when
+// pointed at or reached with the keyboard, as core does on a phone.
+.torch {
+  display: block;
+  max-width: 48rem;
+}
+
+.torch__beam,
+.document-band__beam,
+.document-band--lit::after {
+  display: none;
+}
+
+// Anything in the panel is on the highlight, in both colour schemes.
+.torch__find {
+  @include highlighted;
+}
+
+.torch__row:hover,
+.torch__row:focus-within {
+  background: var(--color-highlight);
+}

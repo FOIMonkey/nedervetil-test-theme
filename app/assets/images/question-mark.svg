@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" role="img" aria-labelledby="mark-title mark-description">
+  <title id="mark-title">Question mark</title>
+  <desc id="mark-description">A navy question mark on a mint disc.</desc>
+  <circle cx="200" cy="200" r="190" fill="#6EE7C8"/>
+  <path d="M142 162C142 122 168 98 202 98C236 98 262 122 262 156C262 200 204 202 204 250" stroke="#0B1F3A" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="204" cy="312" r="27" fill="#0B1F3A"/>
+</svg>

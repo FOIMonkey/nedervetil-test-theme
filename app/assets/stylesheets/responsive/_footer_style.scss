@@ -1,0 +1,24 @@
+.footer {
+  border-top: var(--border-band) solid var(--color-highlight);
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  font-size: var(--text-md);
+
+  a,
+  a:link,
+  a:visited {
+    color: var(--color-header-text);
+  }
+
+  a:hover,
+  a:active,
+  a:focus-visible {
+    background: var(--color-highlight);
+    color: var(--color-on-highlight);
+  }
+}
+
+.footer__site-name {
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+}
