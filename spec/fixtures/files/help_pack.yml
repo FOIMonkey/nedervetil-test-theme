@@ -1,0 +1,41 @@
+# What the invented help pack in lib/help_site/ is expected to show. Used by
+# spec/help_pack_spec.rb, and a short list to check by hand in a demo build.
+
+pages:
+- /help
+- /help/getting-started
+- /help/after-you-ask
+- /help/getting-started/what-is-this
+- /help/getting-started/first-request
+- /help/after-you-ask/waiting
+- /help/after-you-ask/published-documents
+- /help/words
+
+article:
+  path: /help/getting-started/what-is-this
+  title: What is this site?
+  text: Every authority on it is made up
+
+search:
+  words: working days
+  finds:
+  - /help/after-you-ask/waiting
+  words_with_no_answer: zebra crossing
+
+related:
+  from: /help/getting-started/first-request
+  to:
+  - /help/after-you-ask/waiting
+  - /help/getting-started/what-is-this
+
+glossary:
+  word: published document
+  shown_as: published documents
+  page: /help/getting-started/first-request
+  anchor: /help/words#published-document
+  title: Published document
+  means: A released file that has been checked and made public, with a page of its own.
+
+deadline:
+  page: /help/after-you-ask/waiting
+  received: '2026-03-02'

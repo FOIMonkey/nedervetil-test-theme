@@ -1,0 +1,3 @@
+<%# Core's topics/_sign, drawn with the help pack's pictograms (lib/help_site/signs.yml).
+    HelpSite.signs reads them on their own, so a mistake in the pack's answers doesn't reach this page. %>
+<% if (drawing = HelpSite.signs[name]) %><svg class="help-sign topic-sign" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><%= raw drawing %></svg><% end %>

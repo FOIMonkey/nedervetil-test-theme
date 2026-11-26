@@ -1,0 +1,23 @@
+# The sections of help, in order. To add an answer, add a file to
+# answers/<section>/ and list it here.
+
+groups:
+- title: Demonstration help
+  sections:
+  - slug: getting-started
+    title: Getting started
+    description: What this demonstration is and how to ask
+    sign: start
+    answers:
+    - what-is-this
+    - first-request
+  - slug: after-you-ask
+    title: After you ask
+    description: Replies, waiting and published documents
+    sign: reply
+    glance:
+    - title: Invented data
+      note: Every authority and document here is made up
+    answers:
+    - waiting
+    - published-documents
