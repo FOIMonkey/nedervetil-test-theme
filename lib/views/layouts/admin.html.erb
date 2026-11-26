@@ -1,0 +1,52 @@
+<%# Core's layouts/admin, with the theme's admin stylesheet in place of Bootstrap's, core's admin importmap as its only script, a viewport, both colour schemes, the preloaded font, the admin bar outside the container, plain flash boxes and only the changelog in the footer. %>
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <%= csrf_meta_tags %>
+
+    <title>
+      <%= @title ? "#{ @title } -" : "" %> <%= site_name %> admin
+    </title>
+
+    <%= stylesheet_link_tag 'admin-skin', :rel => "stylesheet" %>
+    <%= stylesheet_link_tag 'admin/print', :rel => "stylesheet", :media => "print"  %>
+    <link rel="preload" href="<%= asset_path('roboto-latin-wght-normal.woff2') %>" as="font" type="font/woff2" crossorigin>
+
+    <%= javascript_include_tag "trix", nonce: true %>
+
+    <%= render :partial => 'layouts/favicon' %>
+    <%# Stimulus on every admin page, and the admin's only script. The first
+        three controllers on the body do what jQuery UJS did for data-confirm,
+        data-method and data-disable-with; toggles opens what data-toggle
+        names. %>
+    <%= javascript_importmap_tags("admin", importmap: Rails.application.admin_importmap) %>
+    <%= content_for :javascript_head %>
+  </head>
+  <body class="admin" data-controller="confirm method-link form-lock toggles" data-action="click->confirm#click submit->confirm#submit click->method-link#follow submit->form-lock#lock click->toggles#click keydown->toggles#keydown">
+    <%= render :partial => 'admin/general/admin_navbar' %>
+    <div id="main" class="container">
+      <% if flash[:error] %>
+        <div class="alert alert-error" role="alert">
+          <%= render_flash(flash[:error]) %>
+        </div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="alert alert-info" role="status">
+          <%= render_flash(flash[:notice]) %>
+        </div>
+      <% end %>
+
+      <%= yield  %>
+    </div>
+
+    <footer class="admin-footer">
+      <div class="container">
+        <%= link_to 'Changelog', admin_changelog_index_path %>
+      </div>
+    </footer>
+  </body>
+</html>
