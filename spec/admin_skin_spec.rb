@@ -79,18 +79,19 @@ RSpec.describe 'demo theme admin skin', type: :request do
       end
     end
 
-    it 'gives every toggle in core’s markup a target it can find by id' do
+    it 'leaves no legacy data-toggle attributes and includes the jump dialog and modern rules' do
       make_document
       sign_in(admin)
-      %W[/admin/requests/#{info_request.id} /admin/users/#{owner.id} /admin/bodies/#{body.id}/edit].each do |path|
+      %W[/admin /admin/requests/#{info_request.id} /admin/users/#{owner.id} /admin/bodies/#{body.id}/edit].each do |path|
         get path
-        toggles = page.css('[data-toggle]')
-        expect(toggles.map { _1['data-toggle'] }.uniq - %w[collapse dropdown tab]).to eq([])
-        toggles.reject { _1['data-toggle'] == 'dropdown' }.each do |toggle|
-          id = (toggle['data-target'] || toggle['href']).delete_prefix('#')
-          expect(page.css("[id='#{id}']").size).to eq(1), "#{path}: #{id}"
-        end
+        expect(page.css('[data-toggle]')).to be_empty, path
       end
+      get '/admin'
+      expect(page.at_css('dialog#admin-jump-dialog')).to be_present
+      expect(page.at_css('meta[name="csp-nonce"]')).to be_present
+      stylesheet = assets.grep(/admin-skin/).first
+      get stylesheet
+      expect(response.body).to include('.admin-split', '.admin-subnav')
     end
   end
 end

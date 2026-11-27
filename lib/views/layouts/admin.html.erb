@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="turbo-prefetch" content="false">
 
     <title>
       <%= @title ? "#{ @title } -" : "" %> <%= site_name %> admin
@@ -18,15 +20,16 @@
     <%= javascript_include_tag "trix", nonce: true %>
 
     <%= render :partial => 'layouts/favicon' %>
-    <%# Stimulus on every admin page, and the admin's only script. The first
-        three controllers on the body do what jQuery UJS did for data-confirm,
-        data-method and data-disable-with; toggles opens what data-toggle
-        names. %>
+    <%# Stimulus on every admin page, plus Turbo Frames (with Turbo Drive off).
+        The first three controllers on the body do what jQuery UJS did for
+        data-confirm, data-method and data-disable-with; admin-jump opens the
+        global jump dialog. %>
     <%= javascript_importmap_tags("admin", importmap: Rails.application.admin_importmap) %>
     <%= content_for :javascript_head %>
   </head>
-  <body class="admin" data-controller="confirm method-link form-lock toggles" data-action="click->confirm#click submit->confirm#submit click->method-link#follow submit->form-lock#lock click->toggles#click keydown->toggles#keydown">
+  <body class="admin" data-controller="confirm method-link form-lock admin-jump" data-admin-jump-url-value="<%= admin_jump_path %>" data-action="click->confirm#click submit->confirm#submit click->method-link#follow submit->form-lock#lock keydown@document->admin-jump#shortcut">
     <%= render :partial => 'admin/general/admin_navbar' %>
+    <%= render :partial => 'admin/general/admin_subnav' %>
     <div id="main" class="container">
       <% if flash[:error] %>
         <div class="alert alert-error" role="alert">
@@ -48,5 +51,6 @@
         <%= link_to 'Changelog', admin_changelog_index_path %>
       </div>
     </footer>
+    <%= render :partial => 'admin/general/jump_dialog' %>
   </body>
 </html>

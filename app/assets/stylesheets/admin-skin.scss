@@ -6,6 +6,7 @@
 @use "responsive/features/disclosures";
 @use "responsive/foundation" as *;
 @use "responsive/utils" as *;
+@use "admin/modern";
 
 @use "sass:meta";
 @use "sass:map";
@@ -481,55 +482,6 @@ body.admin {
     }
   }
 
-  .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-top: 5px solid currentColor;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
-    vertical-align: middle;
-  }
-
-  .dropdown {
-    position: relative;
-  }
-
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 900;
-    display: none;
-    min-width: 10rem;
-    margin: 2px 0 0;
-    padding: var(--space-1) 0;
-    text-align: left;
-
-    > li > a,
-    > li .btn {
-      display: block;
-      width: 100%;
-      padding: 0.3rem var(--space-4);
-      border: 0;
-      text-align: left;
-      white-space: nowrap;
-    }
-
-    form {
-      margin: 0;
-    }
-  }
-
-  .text-right .dropdown-menu {
-    right: 0;
-    left: auto;
-  }
-
-  .open > .dropdown-menu {
-    display: block;
-  }
-
   .table {
     width: 100%;
     margin-bottom: var(--space-4);
@@ -604,12 +556,17 @@ body.admin {
   .form-search {
     label,
     input,
-    select,
     textarea,
     .help-inline,
     .input-append,
     .input-prepend {
       display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    select {
+      width: auto;
       margin-bottom: 0;
       vertical-align: middle;
     }
@@ -620,7 +577,7 @@ body.admin {
 
       input {
         float: none;
-        margin-left: 0;
+        margin: 0 0.35rem 0 0;
       }
     }
   }
@@ -728,14 +685,6 @@ body.admin {
     }
   }
 
-  .tab-content > .tab-pane {
-    display: none;
-  }
-
-  .tab-content > .active {
-    display: block;
-  }
-
   .breadcrumb {
     padding: var(--space-2) var(--space-3);
     background: var(--color-panel);
@@ -748,19 +697,6 @@ body.admin {
       padding: 0 0.3rem;
       color: var(--color-text-soft);
     }
-  }
-
-  .accordion-heading .accordion-toggle {
-    display: block;
-  }
-
-  .accordion-inner {
-    padding: var(--space-2) 0;
-    border-top: var(--border-hair) solid var(--color-line);
-  }
-
-  .collapse:not(.in) {
-    display: none;
   }
 
   .thumbnails {
@@ -852,15 +788,6 @@ body.admin {
     vertical-align: text-bottom;
   }
 
-  // A fold's chevron points down while it is open.
-  [aria-expanded="true"] .icon-chevron-right {
-    transform: rotate(90deg);
-  }
-
-  [aria-expanded="false"] .icon-chevron-down {
-    transform: rotate(-90deg);
-  }
-
   a[rel="popover"] {
     position: relative;
   }
@@ -906,11 +833,6 @@ body.admin {
   form.button_to {
     display: inline-block;
     margin: 0;
-  }
-
-  .accordion-heading .btn {
-    float: left;
-    margin: 6px 15px;
   }
 
   span.label.tag {
@@ -1155,8 +1077,21 @@ body.admin {
 
 // Core's tagging widget (admin/_tag_field).
 .tagging-tag-container {
-  margin-bottom: 10px;
-  border: var(--border-hair) solid var(--color-line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  max-width: 36rem;
+  margin-bottom: var(--space-2);
+  padding: 0.25rem 0.4rem;
+  border: var(--border) solid var(--color-text);
+  background: var(--color-field);
+  cursor: text;
+
+  &:focus-within {
+    outline: var(--border) solid var(--color-highlight);
+    outline-offset: 2px;
+  }
 }
 
 .tagging-tags {
@@ -1164,23 +1099,31 @@ body.admin {
   align-items: center;
   gap: 4px;
   min-width: 0;
-  margin: 3px 2px;
-  padding: 0 4px;
+  margin: 0;
+  padding: 0.05rem 0.4rem;
   border: var(--border-hair) solid var(--color-line);
   background: var(--color-panel);
   color: var(--color-text);
   font-family: monospace;
-  font-size: 14px;
-  line-height: 1.85;
+  font-size: var(--text-xs);
+  line-height: 1.6;
   white-space: nowrap;
   vertical-align: middle;
 }
 
 body.admin .tagging-tag-container input.tagging-add-tags {
-  width: 170px;
+  flex: 1 1 8rem;
+  width: auto;
+  min-width: 7rem;
   margin-bottom: 0;
-  font-size: 12px;
-  padding: 5px 3px;
+  padding: 0.15rem 0.25rem;
+  border: 0;
+  background: transparent;
+  font-size: var(--text-sm);
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .tagging-tag-remove {
@@ -1409,22 +1352,6 @@ body.admin {
     }
   }
 
-  .accordion-group {
-    border: 0;
-    border-bottom: var(--border-hair) solid var(--color-line);
-    border-radius: 0;
-  }
-
-  .accordion-heading .accordion-toggle {
-    padding: 0.55rem 0;
-    font-weight: var(--weight-bold);
-    text-decoration: none;
-  }
-
-  .accordion-inner {
-    border-top-color: var(--color-line);
-  }
-
   .well {
     border: 0;
     border-radius: 0;
@@ -1483,24 +1410,48 @@ body.admin {
   }
 
   .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) 0 0;
     border-top-color: var(--color-line);
-    background: var(--color-panel);
+    background: transparent;
   }
 
   .nav-tabs {
-    border-bottom: var(--border) solid var(--color-rule);
+    gap: 0.15rem;
+    margin-bottom: var(--space-4);
+    border-bottom: var(--border-hair) solid var(--color-line);
+
+    > li {
+      margin-bottom: -1px;
+    }
 
     > li > a {
+      padding: 0.45rem 0.85rem;
+      border: 0;
+      border-bottom: 2px solid transparent;
       border-radius: 0;
+      color: var(--color-text-soft);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
       text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        background: transparent;
+        color: var(--color-text);
+      }
     }
 
     > .active > a,
     > .active > a:hover {
-      border: var(--border) solid var(--color-rule);
-      border-bottom-color: var(--color-page);
-      background: var(--color-page);
+      border: 0;
+      border-bottom: 2px solid var(--color-text);
+      background: transparent;
       color: var(--color-text);
+      font-weight: var(--weight-bold);
     }
   }
 
@@ -1511,17 +1462,6 @@ body.admin {
   .nav-pills > .active > a {
     background: var(--color-text);
     color: var(--color-page);
-  }
-
-  .dropdown-menu {
-    border: var(--border) solid var(--color-text);
-    border-radius: 0;
-    background: var(--color-page);
-    box-shadow: none;
-
-    a {
-      color: var(--color-text);
-    }
   }
 
   .pagination ul {
@@ -1726,16 +1666,6 @@ body.admin {
     gap: 0.1rem 0.9rem;
     color: var(--color-text-soft);
     font-size: var(--text-sm);
-  }
-
-  .admin-block .accordion {
-    margin: var(--space-2) 0 0;
-  }
-
-  .admin-block .accordion-toggle .label {
-    min-width: 1.4rem;
-    border-width: var(--border);
-    text-align: center;
   }
 }
 
@@ -2074,6 +2004,8 @@ body.admin {
     color: var(--color-text-soft);
   }
 }
+
+@include modern.styles;
 
 // In the admin, the hidden attribute wins over any display a class gives,
 // as the controllers expect when they hide part of a form. Scoped, because
